@@ -1,0 +1,201 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/fase_1.gd" id="1_r"]
+[ext_resource type="Texture2D" path="res://assets/fundo_varzea.png" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/gramado.png" id="3_r"]
+[ext_resource type="PackedScene" path="res://cenas/plataforma.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://cenas/figurinha.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://cenas/garrafa.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://cenas/bolas.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://cenas/plataforma_movel.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://cenas/arbitro.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://cenas/goleiro.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://cenas/var.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://cenas/saida.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://cenas/jogador.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://cenas/hud.tscn" id="14_r"]
+[ext_resource type="PackedScene" path="res://cenas/pausa.tscn" id="15_r"]
+[ext_resource type="AudioStream" path="res://musicas/fase.ogg" id="16_r"]
+[ext_resource type="AudioStream" path="res://sons/apito_inicio.wav" id="17_r"]
+
+[sub_resource type="RectangleShape2D" id="FormaChao"]
+size = Vector2(5700, 80)
+
+[sub_resource type="RectangleShape2D" id="FormaParede"]
+size = Vector2(40, 1600)
+
+[node name="Fase1" type="Node2D"]
+script = ExtResource("1_r")
+
+[node name="Ceu" type="Polygon2D" parent="."]
+z_index = -10
+polygon = PackedVector2Array(-400, -900, 5700, -900, 5700, 560, -400, 560)
+vertex_colors = PackedColorArray(0.212, 0.616, 0.988, 1, 0.212, 0.616, 0.988, 1, 0.212, 0.616, 0.988, 1, 0.212, 0.616, 0.988, 1)
+
+[node name="Fundo" type="Parallax2D" parent="."]
+z_index = -8
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(858, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Fundo"]
+position = Vector2(0, -20)
+texture = ExtResource("2_r")
+centered = false
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(2650.0, 600)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("FormaChao")
+
+[node name="Gramado" type="Sprite2D" parent="Chao"]
+texture_repeat = 2
+position = Vector2(-3050.0, -40)
+scale = Vector2(1, 25)
+texture = ExtResource("3_r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 6100, 8)
+
+[node name="LinhaLateral" type="Polygon2D" parent="Chao"]
+color = Color(0.95, 0.95, 0.95, 1)
+polygon = PackedVector2Array(-3050.0, -40, 3050.0, -40, 3050.0, -35, -3050.0, -35)
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(-20, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda"]
+shape = SubResource("FormaParede")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="."]
+position = Vector2(5320, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita"]
+shape = SubResource("FormaParede")
+
+[node name="Plataformas" type="Node2D" parent="."]
+
+[node name="Plataforma1" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(1350, 450)
+
+[node name="Plataforma2" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(1600, 340)
+
+[node name="Plataforma3" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(2450, 430)
+
+[node name="Plataforma4" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(3050, 410)
+
+[node name="Plataforma5" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(3300, 300)
+
+[node name="Plataforma6" parent="Plataformas" instance=ExtResource("4_r")]
+position = Vector2(4550, 440)
+
+[node name="Itens" type="Node2D" parent="."]
+
+[node name="Figurinha1" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(420, 500)
+
+[node name="Figurinha2" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(480, 500)
+
+[node name="Figurinha3" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(540, 500)
+
+[node name="Figurinha4" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(1350, 400)
+
+[node name="Figurinha5" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(1600, 290)
+
+[node name="Figurinha6" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(1660, 290)
+
+[node name="Figurinha7" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(2700, 500)
+
+[node name="Figurinha8" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(2760, 500)
+
+[node name="Figurinha9" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(2820, 500)
+
+[node name="Figurinha10" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(3300, 250)
+
+[node name="Figurinha11" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(4550, 390)
+
+[node name="Figurinha12" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(4610, 390)
+
+[node name="Figurinha13" parent="Itens" instance=ExtResource("5_r")]
+position = Vector2(4490, 390)
+
+[node name="Garrafa1" parent="Itens" instance=ExtResource("6_r")]
+position = Vector2(3050, 360)
+
+[node name="Bolas1" parent="Itens" instance=ExtResource("7_r")]
+position = Vector2(1800, 500)
+
+[node name="Bolas2" parent="Itens" instance=ExtResource("7_r")]
+position = Vector2(3700, 330)
+
+[node name="Bolas3" parent="Itens" instance=ExtResource("7_r")]
+position = Vector2(4650, 500)
+
+[node name="PlataformaMovel1" parent="Plataformas" instance=ExtResource("8_r")]
+position = Vector2(3600, 380)
+
+[node name="Inimigos" type="Node2D" parent="."]
+
+[node name="Arbitro1" parent="Inimigos" instance=ExtResource("9_r")]
+position = Vector2(1000, 560)
+
+[node name="Goleiro2" parent="Inimigos" instance=ExtResource("10_r")]
+position = Vector2(2000, 560)
+
+[node name="Arbitro3" parent="Inimigos" instance=ExtResource("9_r")]
+position = Vector2(2450, 418)
+
+[node name="Var4" parent="Inimigos" instance=ExtResource("11_r")]
+position = Vector2(2950, 560)
+
+[node name="Goleiro5" parent="Inimigos" instance=ExtResource("10_r")]
+position = Vector2(3550, 560)
+
+[node name="Arbitro6" parent="Inimigos" instance=ExtResource("9_r")]
+position = Vector2(3950, 560)
+
+[node name="Goleiro7" parent="Inimigos" instance=ExtResource("10_r")]
+position = Vector2(4350, 560)
+
+[node name="Arbitro8" parent="Inimigos" instance=ExtResource("9_r")]
+position = Vector2(4800, 560)
+
+[node name="Saida" parent="." instance=ExtResource("12_r")]
+position = Vector2(5150, 560)
+
+[node name="Jogador" parent="." instance=ExtResource("13_r")]
+position = Vector2(150, 506)
+
+[node name="HUD" parent="." instance=ExtResource("14_r")]
+
+[node name="Pausa" parent="." instance=ExtResource("15_r")]
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_r")
+bus = &"Musica"
+autoplay = true
+
+[node name="SomApitoInicio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_r")
+bus = &"Efeitos"
+
+[connection signal="finished" from="Musica" to="Musica" method="play"]

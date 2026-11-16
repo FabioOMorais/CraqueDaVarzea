@@ -1,0 +1,184 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/voltar_menu.gd" id="1_r"]
+[ext_resource type="Theme" path="res://assets/tema.tres" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/fundo_menu.png" id="3_r"]
+[ext_resource type="AudioStream" path="res://musicas/menu.ogg" id="4_r"]
+[ext_resource type="AudioStream" path="res://sons/clique.wav" id="5_r"]
+
+[node name="ComoJogar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r")
+script = ExtResource("1_r")
+
+[node name="Fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Escurecer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r")
+bus = &"Musica"
+autoplay = true
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r")
+bus = &"Efeitos"
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 60
+text = "COMO JOGAR"
+horizontal_alignment = 1
+
+[node name="Controles" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -230.0
+offset_right = 380.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Tecla0" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "A / D  ou  setas"
+horizontal_alignment = 2
+
+[node name="Acao0" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "andar"
+
+[node name="Tecla1" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "W / Espaço / seta cima"
+horizontal_alignment = 2
+
+[node name="Acao1" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "pular"
+
+[node name="Tecla2" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "J"
+horizontal_alignment = 2
+
+[node name="Acao2" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "carrinho"
+
+[node name="Tecla3" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "K"
+horizontal_alignment = 2
+
+[node name="Acao3" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "chutar a bola"
+
+[node name="Tecla4" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "L"
+horizontal_alignment = 2
+
+[node name="Acao4" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "cabeçada (também no ar: rebate os cartões!)"
+
+[node name="Tecla5" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Esc / P"
+horizontal_alignment = 2
+
+[node name="Acao5" type="Label" parent="Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "pausar"
+
+[node name="Objetivo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = 80.0
+offset_right = 520.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Junte figurinhas, pegue as garrafinhas d'água para recuperar vida e chegue ao vestiário.\nNa fase 2, derrote o Cartão Vermelho e atravesse os portões do estádio!"
+horizontal_alignment = 1
+
+[node name="BotaoVoltar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -100.0
+offset_right = 140.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Voltar"
+
+[connection signal="finished" from="Musica" to="Musica" method="play"]
+[connection signal="pressed" from="BotaoVoltar" to="." method="_on_botao_voltar_pressed"]
+[connection signal="pressed" from="BotaoVoltar" to="SomClique" method="play"]

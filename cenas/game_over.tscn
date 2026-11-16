@@ -1,0 +1,110 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_r"]
+[ext_resource type="Theme" path="res://assets/tema.tres" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/fundo_menu.png" id="3_r"]
+[ext_resource type="AudioStream" path="res://sons/clique.wav" id="4_r"]
+[ext_resource type="AudioStream" path="res://musicas/game_over.ogg" id="5_r"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r")
+script = ExtResource("1_r")
+
+[node name="Fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Escurecer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r")
+bus = &"Efeitos"
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r")
+bus = &"Musica"
+autoplay = true
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.25, 0.2, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 96
+text = "FIM DE JOGO"
+horizontal_alignment = 1
+
+[node name="Frase" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 210.0
+offset_bottom = 250.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 8
+text = "O juiz encerrou a partida... mas ainda dá pra virar!"
+horizontal_alignment = 1
+
+[node name="Pontos" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 270.0
+offset_bottom = 320.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 30
+text = "Pontos: 0"
+horizontal_alignment = 1
+
+[node name="Botoes" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 20.0
+offset_right = 170.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="BotaoTentar" type="Button" parent="Botoes"]
+layout_mode = 2
+text = "Tentar de novo"
+
+[node name="BotaoMenu" type="Button" parent="Botoes"]
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pressed" from="Botoes/BotaoTentar" to="." method="_on_botao_tentar_pressed"]
+[connection signal="pressed" from="Botoes/BotaoTentar" to="SomClique" method="play"]
+[connection signal="pressed" from="Botoes/BotaoMenu" to="." method="_on_botao_menu_pressed"]
+[connection signal="pressed" from="Botoes/BotaoMenu" to="SomClique" method="play"]

@@ -1,0 +1,126 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_r"]
+[ext_resource type="Texture2D" path="res://assets/icone_vida.png" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/figurinha.png" id="3_r"]
+[ext_resource type="Theme" path="res://assets/tema.tres" id="4_r"]
+[ext_resource type="Texture2D" path="res://assets/bola.png" id="5_r"]
+
+[sub_resource type="StyleBoxFlat" id="FundoBarra"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="CheioBarra"]
+bg_color = Color(0.9, 0.15, 0.15, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_r")
+
+[node name="IconeVida" type="TextureRect" parent="."]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 56.0
+offset_bottom = 52.0
+texture = ExtResource("2_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Vidas" type="Label" parent="."]
+offset_left = 62.0
+offset_top = 14.0
+offset_right = 160.0
+offset_bottom = 50.0
+theme = ExtResource("4_r")
+text = "x 5"
+
+[node name="IconeFigurinha" type="TextureRect" parent="."]
+offset_left = 148.0
+offset_top = 10.0
+offset_right = 182.0
+offset_bottom = 54.0
+texture = ExtResource("3_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Figurinhas" type="Label" parent="."]
+offset_left = 186.0
+offset_top = 14.0
+offset_right = 280.0
+offset_bottom = 50.0
+theme = ExtResource("4_r")
+text = "x 0"
+
+[node name="IconeBola" type="TextureRect" parent="."]
+offset_left = 262.0
+offset_top = 14.0
+offset_right = 298.0
+offset_bottom = 50.0
+texture = ExtResource("5_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Bolas" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 14.0
+offset_right = 400.0
+offset_bottom = 50.0
+theme = ExtResource("4_r")
+text = "x 6"
+
+[node name="Pontos" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme = ExtResource("4_r")
+text = "PONTOS: 0"
+horizontal_alignment = 2
+
+[node name="Fase" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 14.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme = ExtResource("4_r")
+text = "FASE 1"
+horizontal_alignment = 1
+
+[node name="BarraChefao" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("FundoBarra")
+theme_override_styles/fill = SubResource("CheioBarra")
+max_value = 20.0
+step = 1.0
+value = 20.0
+show_percentage = false
+
+[node name="Nome" type="Label" parent="BarraChefao"]
+offset_top = -34.0
+offset_right = 600.0
+theme = ExtResource("4_r")
+text = "CARTÃO VERMELHO"
+horizontal_alignment = 1
+

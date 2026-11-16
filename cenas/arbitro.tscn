@@ -1,0 +1,217 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/arbitro.gd" id="1_r"]
+[ext_resource type="Texture2D" path="res://assets/arbitro_sheet.png" id="2_r"]
+[ext_resource type="AudioStream" path="res://sons/apito.wav" id="3_r"]
+[ext_resource type="AudioStream" path="res://sons/dano_inimigo.wav" id="4_r"]
+[ext_resource type="AudioStream" path="res://sons/inimigo_derrotado.wav" id="5_r"]
+
+[sub_resource type="RectangleShape2D" id="Forma"]
+size = Vector2(44, 118)
+
+[sub_resource type="Animation" id="AnimArbitro_0"]
+resource_name = "parado"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="AnimArbitro_1"]
+resource_name = "apitando_amarelo"
+length = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0, 0.25, 0.5, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"jogar_cartao"
+}]
+}
+
+[sub_resource type="Animation" id="AnimArbitro_2"]
+resource_name = "apitando_vermelho"
+length = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0, 0.25, 0.5, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"jogar_cartao"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimArbitro"]
+_data = {
+&"parado": SubResource("AnimArbitro_0"),
+&"apitando_amarelo": SubResource("AnimArbitro_1"),
+&"apitando_vermelho": SubResource("AnimArbitro_2")
+}
+
+[sub_resource type="Animation" id="AnimEfeito_0"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="AnimEfeito_1"]
+resource_name = "dano"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.3, 0.3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="AnimEfeito_2"]
+resource_name = "morrendo"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.3, 0.3, 1), Color(1, 0.3, 0.3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimEfeito"]
+_data = {
+&"RESET": SubResource("AnimEfeito_0"),
+&"dano": SubResource("AnimEfeito_1"),
+&"morrendo": SubResource("AnimEfeito_2")
+}
+
+[node name="Arbitro" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_r")
+offset = Vector2(0, -70.0)
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -59)
+shape = SubResource("Forma")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(40, -72)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("AnimArbitro")
+autoplay = &"parado"
+
+[node name="Efeito" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("AnimEfeito")
+
+[node name="TimerCartao" type="Timer" parent="."]
+wait_time = 2.4
+one_shot = true
+
+[node name="SomApito" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r")
+bus = &"Efeitos"
+
+[node name="SomDano" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r")
+bus = &"Efeitos"
+
+[node name="SomDerrotado" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r")
+bus = &"Efeitos"
+

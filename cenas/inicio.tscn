@@ -1,0 +1,113 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/inicio.gd" id="1_r"]
+[ext_resource type="Theme" path="res://assets/tema.tres" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/fundo_menu.png" id="3_r"]
+[ext_resource type="AudioStream" path="res://musicas/menu.ogg" id="4_r"]
+[ext_resource type="AudioStream" path="res://sons/clique.wav" id="5_r"]
+[ext_resource type="Texture2D" path="res://assets/logo.png" id="6_r"]
+
+[node name="Inicio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r")
+script = ExtResource("1_r")
+
+[node name="Fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Escurecer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.15)
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r")
+bus = &"Musica"
+autoplay = true
+
+[node name="SomClique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r")
+bus = &"Efeitos"
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -380.0
+offset_top = 24.0
+offset_right = 380.0
+offset_bottom = 225.0
+grow_horizontal = 2
+texture = ExtResource("6_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Subtitulo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 232.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 8
+text = "Do campinho do bairro até a final do campeonato"
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -40.0
+offset_right = 170.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="BotaoJogar" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Jogar"
+
+[node name="BotaoComoJogar" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Como jogar"
+
+[node name="BotaoConfiguracoes" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Configurações"
+
+[node name="BotaoSair" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Sair"
+
+[connection signal="finished" from="Musica" to="Musica" method="play"]
+[connection signal="pressed" from="Menu/BotaoJogar" to="." method="_on_botao_jogar_pressed"]
+[connection signal="pressed" from="Menu/BotaoJogar" to="SomClique" method="play"]
+[connection signal="pressed" from="Menu/BotaoComoJogar" to="." method="_on_botao_como_jogar_pressed"]
+[connection signal="pressed" from="Menu/BotaoComoJogar" to="SomClique" method="play"]
+[connection signal="pressed" from="Menu/BotaoConfiguracoes" to="." method="_on_botao_configuracoes_pressed"]
+[connection signal="pressed" from="Menu/BotaoConfiguracoes" to="SomClique" method="play"]
+[connection signal="pressed" from="Menu/BotaoSair" to="." method="_on_botao_sair_pressed"]
+[connection signal="pressed" from="Menu/BotaoSair" to="SomClique" method="play"]

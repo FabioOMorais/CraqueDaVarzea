@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/saida.gd" id="1_r"]
+[ext_resource type="Texture2D" path="res://assets/saida.png" id="2_r"]
+
+[sub_resource type="RectangleShape2D" id="Forma"]
+size = Vector2(70, 120)
+
+[node name="Saida" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_r")
+offset = Vector2(0, -87.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -60)
+shape = SubResource("Forma")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
